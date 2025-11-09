@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Universe Management System - Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="auth/css/auth-glassmorphism.css">
+    <link rel="stylesheet" href="auth/css/auth-animations.css">
+    <link rel="stylesheet" href="auth/css/auth-particles.css">
+</head>
+<body>
+    <!-- Particle Background -->
+    <div class="particles" id="particles"></div>
+    
+    <a href="#" class="admin-link"><i class="fas fa-cog"></i> Admin Portal</a>
+    
+    <!-- Add this near the admin link at the top -->
+<a href="#" class="admin-link" id="adminLink"><i class="fas fa-cog"></i> Admin Portal</a>
+
+<!-- Add this modal at the bottom of the body (before scripts) -->
+<div id="adminLoginModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>Admin Login</h2>
+    <form id="adminLoginForm">
+      <div class="input-group">
+        <input type="text" placeholder="Admin Username" required id="adminUsername" />
+        <i class="fas fa-user-shield"></i>
+      </div>
+      <div class="input-group">
+        <input type="password" placeholder="Password" required id="adminPassword" />
+        <i class="fas fa-lock"></i>
+      </div>
+      <button type="submit">Login</button>
+      
+      <div class="divider">Quick Access</div>
+      <div class="quick-login admin-quick-login">
+          <button type="button" class="quick-btn admin-quick-btn" onclick="quickLogin('admin', 'ADMIN001', 'admin123')">
+              <i class="fas fa-user-cog"></i>
+              Demo
+          </button>
+          <button type="button" class="quick-btn admin-quick-btn" onclick="quickLogin('admin', 'ADMIN002', 'test456')">
+              <i class="fas fa-vial"></i>
+              Test
+          </button>
+      </div>
+    </form>
+  </div>
+</div>  
+    
+    <div class="auth-container" id="authContainer">
+        <!-- Student Login Form -->
+        <div class="form-container student-login-container">
+            <form id="studentLoginForm">
+                <div class="system-title">UNIVERSE MANAGEMENT SYSTEM</div>
+                <div class="role-badge">STUDENT PORTAL</div>
+                <div class="role-icon">
+                    <i class="fas fa-user-graduate"></i>
+                </div>
+                <h1>Student Login</h1>
+                
+                <div class="input-group">
+                    <input type="text" placeholder="Student ID" required id="studentId" />
+                    <i class="fas fa-id-card"></i>
+                </div>
+                <div class="input-group">
+                    <input type="password" placeholder="Password" required id="studentPassword" />
+                    <i class="fas fa-lock"></i>
+                </div>
+                
+                <a href="#" class="forgot-password">Forgot your password?</a>
+                <button type="submit">Login as Student</button>
+                
+                <div class="divider">Quick Access</div>
+                <div class="quick-login">
+                    <button type="button" class="quick-btn" onclick="quickLogin('student', 'STU001', 'password123')">Demo Student</button>
+                    <button type="button" class="quick-btn" onclick="quickLogin('student', 'STU002', 'student456')">Test Account</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Professor Login Form -->
+        <div class="form-container professor-login-container">
+            <form id="professorLoginForm">
+                <div class="system-title">UNIVERSE MANAGEMENT SYSTEM</div>
+                <div class="role-badge">PROFESSOR PORTAL</div>
+                <div class="role-icon">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                </div>
+                <h1>Professor Login</h1>
+                
+                <div class="input-group">
+                    <input type="text" placeholder="Professor ID" required id="professorId" />
+                    <i class="fas fa-id-badge"></i>
+                </div>
+                <div class="input-group">
+                    <input type="password" placeholder="Password" required id="professorPassword" />
+                    <i class="fas fa-lock"></i>
+                </div>
+                
+                <a href="#" class="forgot-password">Forgot your password?</a>
+                <button type="submit">Login as Professor</button>
+                
+                <div class="divider">Quick Access</div>
+                <div class="quick-login">
+                    <button type="button" class="quick-btn" onclick="quickLogin('professor', 'PROF001', 'prof123')">Demo Professor</button>
+                    <button type="button" class="quick-btn" onclick="quickLogin('professor', 'PROF002', 'faculty456')">Test Account</button>
+                </div>
+            </form>
+        </div>
+        
+        <!-- Student Registration Form -->
+        <div class="form-container register-container">
+            <form id="registerForm">
+                <div class="system-title">UNIVERSE MANAGEMENT SYSTEM</div>
+                <div class="role-badge">NEW STUDENT REGISTRATION</div>
+                <div class="role-icon">
+                    <i class="fas fa-user-plus"></i>
+                </div>
+                <h1>Create Account</h1>
+                
+                <!-- Progress Bar for Multi-step Registration -->
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <div class="progress" id="registerProgress"></div>
+                    </div>
+                    <div class="step-indicators">
+                        <div class="step active" data-step="1">1</div>
+                        <div class="step" data-step="2">2</div>
+                        <div class="step" data-step="3">3</div>
+                    </div>
+                </div>
+                
+                <!-- Step 1: Basic Information -->
+                <div class="register-step" id="step1">
+                    <div class="input-group">
+                        <input type="text" placeholder="Full Name" required id="regName" />
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="input-group">
+                        <input type="email" placeholder="Email Address" required id="regEmail" />
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="input-group">
+                        <input type="tel" placeholder="Phone Number" required id="regPhone" />
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <button type="button" class="next-btn" onclick="nextStep(1)">Next Step</button>
+                </div>
+                
+                <!-- Step 2: Account Details -->
+                <div class="register-step" id="step2" style="display: none;">
+                    <div class="input-group">
+                        <input type="text" placeholder="Create Student ID" required id="regStudentId" />
+                        <i class="fas fa-id-card"></i>
+                    </div>
+                    <div class="input-group">
+                        <input type="password" placeholder="Create Password" required id="regPassword" />
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div class="input-group">
+                        <input type="password" placeholder="Confirm Password" required id="regConfirmPassword" />
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="btn-group">
+                        <button type="button" class="back-btn" onclick="prevStep(2)">Back</button>
+                        <button type="button" class="next-btn" onclick="nextStep(2)">Next Step</button>
+                    </div>
+                </div>
+                
+                <!-- Step 3: Academic Information -->
+                <div class="register-step" id="step3" style="display: none;">
+                    <div class="input-group">
+                        <select id="regDepartment" required>
+                            <option value="" disabled selected>Select Department</option>
+                            <option value="cs">Computer Science</option>
+                            <option value="eng">Engineering</option>
+                            <option value="bus">Business</option>
+                            <option value="art">Arts & Humanities</option>
+                        </select>
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <div class="input-group">
+                        <select id="regYear" required>
+                            <option value="" disabled selected>Academic Year</option>
+                            <option value="1">Freshman</option>
+                            <option value="2">Sophomore</option>
+                            <option value="3">Junior</option>
+                            <option value="4">Senior</option>
+                        </select>
+                        <i class="fas fa-calendar"></i>
+                    </div>
+                    <div class="btn-group">
+                        <button type="button" class="back-btn" onclick="prevStep(3)">Back</button>
+                        <button type="submit">Create Account</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!-- Overlay Container -->
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <div class="overlay-icon">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <h1>Welcome Back!</h1>
+                    <p>Access your courses, assignments, grades, and academic resources through your student portal</p>
+                    <button class="toggle-btn" id="studentBtn">Student Login</button>
+                </div>
+                <div class="overlay-panel overlay-right">
+                    <div class="overlay-icon">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <h1>Faculty Portal</h1>
+                    <p>Manage your courses, track student progress, and access teaching resources through the professor portal</p>
+                    <button class="toggle-btn" id="professorBtn">Professor Login</button>
+                </div>
+                <div class="overlay-panel overlay-register">
+                    <div class="overlay-icon">
+                        <i class="fas fa-user-plus"></i>
+                    </div>
+                    <h1>New to Universe?</h1>
+                    <p>Create your student account to access all our features and resources</p>
+                    <button class="toggle-btn" id="registerBtn">Register Now</button>
+                </div>
+                <div class="overlay-panel overlay-login">
+                    <div class="overlay-icon">
+                        <i class="fas fa-sign-in-alt"></i>
+                    </div>
+                    <h1>Already Registered?</h1>
+                    <p>Login with your credentials to access your student account</p>
+                    <button class="toggle-btn" id="loginBtn">Sign In</button>
+                </div>
+            </div>
+        </div>
+    </div>
+<script src="auth/js/particles.js"></script>
+<script src="auth/js/form-morphing.js"></script>
+<script src="auth/js/navigation-controller.js"></script>
+<script src="auth/js/auth-advanced.js"></script>
+<script src="auth/js/admin.js"></script>
+</body>
+</html>

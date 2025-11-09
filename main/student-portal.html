@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University Management System - Student Portal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="auth/css/styles.css">
+    <link rel="stylesheet" href="auth/css/student-portal.css">
+</head>
+<body>
+    <div class="main-layout" id="mainLayout">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <button class="sidebar-toggle" id="sidebarToggle">
+                <i class="fas fa-chevron-left" id="toggleIcon"></i>
+            </button>
+            
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <div class="sidebar-title">University Hub</div>
+            </div>
+            
+            <ul class="sidebar-menu">
+                <li class="sidebar-menu-item">
+                    <a href="#" class="sidebar-menu-link" data-page="dashboard">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span class="sidebar-menu-text">My Dashboard</span>
+                    </a>
+                </li>
+                <li class="sidebar-menu-item">
+                    <a href="#" class="sidebar-menu-link" data-page="courses">
+                        <i class="fas fa-book"></i>
+                        <span class="sidebar-menu-text">My Courses</span>
+                    </a>
+                </li>
+                <li class="sidebar-menu-item">
+                    <a href="#" class="sidebar-menu-link" data-page="assignments">
+                        <i class="fas fa-tasks"></i>
+                        <span class="sidebar-menu-text">Assignments</span>
+                    </a>
+                </li>
+                <li class="sidebar-menu-item">
+                    <a href="#" class="sidebar-menu-link" data-page="grades">
+                        <i class="fas fa-chart-bar"></i>
+                        <span class="sidebar-menu-text">Grades</span>
+                    </a>
+                </li>
+                <li class="sidebar-menu-item">
+                    <a href="#" class="sidebar-menu-link" data-page="schedule">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span class="sidebar-menu-text">Schedule</span>
+                    </a>
+                </li>
+                <li class="sidebar-menu-item">
+                    <a href="#" class="sidebar-menu-link" data-page="planner">
+                        <i class="fas fa-clipboard-check"></i>
+                        <span class="sidebar-menu-text">Study Planner</span>
+                    </a>
+                </li>
+                <li class="sidebar-menu-item">
+                    <a href="#" class="sidebar-menu-link" data-page="messages">
+                        <i class="fas fa-envelope"></i>
+                        <span class="sidebar-menu-text">Messages</span>
+                    </a>
+                </li>
+                <li class="sidebar-menu-item">
+                    <a href="#" class="sidebar-menu-link" data-page="resources">
+                        <i class="fas fa-file-download"></i>
+                        <span class="sidebar-menu-text">Resources</span>
+                    </a>
+                </li>
+                <li class="sidebar-menu-item">
+                    <a href="#" class="sidebar-menu-link" data-page="settings">
+                        <i class="fas fa-cog"></i>
+                        <span class="sidebar-menu-text">Settings</span>
+                    </a>
+                </li>
+                <li class="sidebar-menu-item">
+                    <a href="#" class="sidebar-menu-link" data-page="announcements">
+                        <i class="fas fa-bullhorn"></i>
+                        <span class="sidebar-menu-text">Announcements</span>
+                    </a>
+                </li>
+                <li class="sidebar-menu-item sidebar-menu-home">
+                    <a href="#" class="sidebar-menu-link" onclick="logout()">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span class="sidebar-menu-text">Logout</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <h1>My Dashboard</h1>
+                <div class="breadcrumb">Home / Student Portal / Dashboard</div>
+            </div>
+            <div class="header-right">
+                <div class="notification-dropdown">
+                    <button class="notification-btn" id="notificationBtn">
+                    <i class="fas fa-bell"></i>
+                        <span class="notification-badge">4</span>
+                    </button>
+                    <div class="dropdown-menu" id="notificationDropdown">
+                        <div class="dropdown-header">
+                            <h3>Notifications</h3>
+                            <button class="dropdown-close">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        <div class="dropdown-content">
+                            <div class="notification-item warning">
+                                <h4>Assignment Due Soon</h4>
+                                <p>CS101 Programming Assignment due in 2 days</p>
+                            </div>
+                            <div class="notification-item info">
+                                <h4>New Course Material</h4>
+                                <p>New lecture notes available in CS201</p>
+                            </div>
+                            <div class="notification-item success">
+                                <h4>Grade Posted</h4>
+                                <p>Your Data Structures midterm has been graded</p>
+                            </div>
+                            <div class="notification-item info">
+                                <h4>Registration Open</h4>
+                                <p>Spring semester registration now open</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="user-profile" id="userProfile">
+                    <div class="user-avatar" id="userInitials">JS</div>
+                    <div class="user-info">
+                        <div class="user-name" id="userName">Jane Smith</div>
+                        <div class="user-role" id="userRole">Student</div>
+                    </div>
+                    <i class="fas fa-chevron-down"></i>
+                    <div class="dropdown-menu" id="profileDropdown">
+                        <div class="dropdown-header">
+                            <h3>User Profile</h3>
+                            <button class="dropdown-close">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        <div class="dropdown-content">
+                            <div class="profile-avatar" id="profileInitials">JS</div>
+                            <h3 class="profile-name" id="profileName">Jane Smith</h3>
+                            <p class="profile-role" id="profileRole">Computer Science Student</p>
+                            <div class="profile-details">
+                                <div class="profile-detail">
+                                    <label>ID</label>
+                                    <p id="profileId">STU002</p>
+                                </div>
+                                <div class="profile-detail">
+                                    <label>Email</label>
+                                    <p>jane.smith@university.edu</p>
+                                </div>
+                                <div class="profile-detail">
+                                    <label>Major</label>
+                                    <p>Computer Science</p>
+                                </div>
+                                <div class="profile-detail">
+                                    <label>Year</label>
+                                    <p>Junior</p>
+                                </div>
+                            </div>
+                            <button class="profile-logout" onclick="logout()">
+                                <i class="fas fa-sign-out-alt"></i>
+                                Logout
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Content -->
+        <main class="content">
+            <!-- Dashboard Section -->
+            <div id="dashboardSection" class="page-section active">
+                <!-- Welcome Banner -->
+                <div class="student-welcome-banner">
+                    <div class="welcome-text">
+                        <h2>Welcome back, <span id="welcomeName">Jane</span>!</h2>
+                        <p>Your academic journey continues. Here's what's happening today.</p>
+                    </div>
+                    <div class="welcome-stats">
+                        <div class="welcome-stat">
+                            <div class="stat-value">3.9</div>
+                            <div class="stat-label">Current GPA</div>
+                        </div>
+                        <div class="welcome-stat">
+                            <div class="stat-value">75%</div>
+                            <div class="stat-label">Semester Progress</div>
+                        </div>
+                        <div class="welcome-stat">
+                            <div class="stat-value">4</div>
+                            <div class="stat-label">Active Courses</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Dashboard Grid -->
+                <div class="dashboard-grid">
+                    <!-- Upcoming Assignments Widget -->
+                    <div class="dashboard-widget assignments-widget">
+                        <div class="widget-header">
+                            <h3>Upcoming Assignments</h3>
+                            <a href="#" class="widget-link" data-page="assignments">View All</a>
+                        </div>
+                        <div class="widget-content">
+                            <ul class="assignment-list">
+                                <li class="assignment-item">
+                                    <div class="assignment-icon urgent">
+                                        <i class="fas fa-exclamation-circle"></i>
+                                    </div>
+                                    <div class="assignment-details">
+                                        <h4>Programming Basics</h4>
+                                        <p>CS101 - Due Oct 15, 2023</p>
+                                    </div>
+                                    <div class="assignment-status">
+                                        <span class="status-badge pending">Pending</span>
+                                    </div>
+                                </li>
+                                <li class="assignment-item">
+                                    <div class="assignment-icon">
+                                        <i class="fas fa-clipboard-list"></i>
+                                    </div>
+                                    <div class="assignment-details">
+                                        <h4>Data Structures Quiz</h4>
+                                        <p>CS201 - Due Oct 18, 2023</p>
+                                    </div>
+                                    <div class="assignment-status">
+                                        <span class="status-badge pending">Pending</span>
+                                    </div>
+                                </li>
+                                <li class="assignment-item">
+                                    <div class="assignment-icon">
+                                        <i class="fas fa-clipboard-list"></i>
+                                    </div>
+                                    <div class="assignment-details">
+                                        <h4>Database Design</h4>
+                                        <p>CS350 - Due Oct 22, 2023</p>
+                                    </div>
+                                    <div class="assignment-status">
+                                        <span class="status-badge pending">Pending</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Recent Grades Widget -->
+                    <div class="dashboard-widget grades-widget">
+                        <div class="widget-header">
+                            <h3>Recent Grades</h3>
+                            <a href="#" class="widget-link" data-page="grades">View All</a>
+                        </div>
+                        <div class="widget-content">
+                            <ul class="grades-list">
+                                <li class="grade-item">
+                                    <div class="grade-details">
+                                        <h4>Algorithms Quiz</h4>
+                                        <p>CS201 - Oct 10, 2023</p>
+                                    </div>
+                                    <div class="grade-value excellent">A (95%)</div>
+                                </li>
+                                <li class="grade-item">
+                                    <div class="grade-details">
+                                        <h4>Programming Lab #2</h4>
+                                        <p>CS101 - Oct 8, 2023</p>
+                                    </div>
+                                    <div class="grade-value good">B+ (88%)</div>
+                                </li>
+                                <li class="grade-item">
+                                    <div class="grade-details">
+                                        <h4>Database Concepts</h4>
+                                        <p>CS350 - Oct 5, 2023</p>
+                                    </div>
+                                    <div class="grade-value excellent">A- (92%)</div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Today's Schedule Widget -->
+                    <div class="dashboard-widget schedule-widget">
+                        <div class="widget-header">
+                            <h3>Today's Schedule</h3>
+                            <a href="#" class="widget-link" data-page="schedule">Full Schedule</a>
+                        </div>
+                        <div class="widget-content">
+                            <div class="schedule-timeline">
+                                <div class="timeline-item">
+                                    <div class="timeline-time">
+                                        <span class="time">09:00 AM</span>
+                                        <div class="time-line"></div>
+                                    </div>
+                                    <div class="timeline-content">
+                                        <div class="schedule-card">
+                                            <h4>CS101: Introduction to Programming</h4>
+                                            <p>Science Building, Room 203</p>
+                                            <span class="schedule-duration">09:00 AM - 10:30 AM</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-time">
+                                        <span class="time">11:00 AM</span>
+                                        <div class="time-line"></div>
+                                    </div>
+                                    <div class="timeline-content">
+                                        <div class="schedule-card">
+                                            <h4>CS201: Data Structures</h4>
+                                            <p>Engineering Building, Room 105</p>
+                                            <span class="schedule-duration">11:00 AM - 12:30 PM</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-time">
+                                        <span class="time">02:00 PM</span>
+                                        <div class="time-line"></div>
+                                    </div>
+                                    <div class="timeline-content">
+                                        <div class="schedule-card">
+                                            <h4>CS350: Database Systems</h4>
+                                            <p>Science Building, Room 105</p>
+                                            <span class="schedule-duration">02:00 PM - 03:30 PM</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Academic Progress Widget -->
+                    <div class="dashboard-widget progress-widget">
+                        <div class="widget-header">
+                            <h3>Academic Progress</h3>
+                            <a href="#" class="widget-link">Details</a>
+                        </div>
+                        <div class="widget-content">
+                            <div class="progress-overview">
+                                <div class="semester-progress">
+                                    <h4>Current Semester</h4>
+                                    <div class="progress-bar-container">
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 75%"></div>
+                                        </div>
+                                        <div class="progress-label">75% Complete</div>
+                                    </div>
+                                </div>
+                                <div class="degree-progress">
+                                    <h4>Degree Completion</h4>
+                                    <div class="progress-bar-container">
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 45%"></div>
+                                        </div>
+                                        <div class="progress-label">45% Complete</div>
+                                    </div>
+                                </div>
+                                <div class="credit-summary">
+                                    <div class="credit-item">
+                                        <span class="credit-label">Credits Completed</span>
+                                        <span class="credit-value">54</span>
+                                    </div>
+                                    <div class="credit-item">
+                                        <span class="credit-label">Credits in Progress</span>
+                                        <span class="credit-value">15</span>
+                                    </div>
+                                    <div class="credit-item">
+                                        <span class="credit-label">Credits Required</span>
+                                        <span class="credit-value">120</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Announcements Section (Phase 7) -->
+            <div id="announcementsSection" class="page-section">
+                <div class="announcements-panel slide-in">
+                    <h2 class="section-title">Announcements</h2>
+                    <div class="announcements-feed" id="announcementsFeed">
+                        <!-- Demo announcements removed: now rendered by JS only -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Courses Section -->
+            <div id="coursesSection" class="page-section">
+                <h2 class="section-title">My Courses</h2>
+                <div class="info-message">
+                    <i class="fas fa-info-circle"></i>
+                    <span>Select a course to view details, materials, and assignments.</span>
+                </div>
+                <div class="courses-grid">
+                    <!-- Courses will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Other Sections -->
+            <div id="assignmentsSection" class="page-section">
+                <h2 class="section-title">Assignments</h2>
+                <div class="info-message">
+                    <i class="fas fa-info-circle"></i>
+                    <span>This section will display all your assignments across courses.</span>
+                </div>
+            </div>
+
+            <div id="gradesSection" class="page-section">
+                <h2 class="section-title">Grades</h2>
+                <div class="info-message">
+                    <i class="fas fa-info-circle"></i>
+                    <span>This section will display your grades for all courses.</span>
+                </div>
+            </div>
+
+            <div id="scheduleSection" class="page-section">
+                <h2 class="section-title">Schedule</h2>
+                <div class="info-message">
+                    <i class="fas fa-info-circle"></i>
+                    <span>Your weekly class schedule will be displayed here.</span>
+                </div>
+            </div>
+
+            <div id="plannerSection" class="page-section">
+                <h2 class="section-title">Study Planner</h2>
+                <div class="info-message">
+                    <i class="fas fa-info-circle"></i>
+                    <span>Create and manage your study schedule here.</span>
+                </div>
+            </div>
+
+            <div id="messagesSection" class="page-section">
+                <h2 class="section-title">Messages</h2>
+                <div class="info-message">
+                    <i class="fas fa-info-circle"></i>
+                    <span>Your communication center with professors and classmates.</span>
+                </div>
+            </div>
+
+            <div id="resourcesSection" class="page-section">
+                <h2 class="section-title">Resources</h2>
+                <div class="info-message">
+                    <i class="fas fa-info-circle"></i>
+                    <span>Access library resources, textbooks, and research materials.</span>
+                </div>
+            </div>
+
+            <div id="settingsSection" class="page-section">
+                <h2 class="section-title">Settings</h2>
+                <div class="info-message">
+                    <i class="fas fa-info-circle"></i>
+                    <span>Manage your account settings and preferences.</span>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="auth/js/script.js"></script>
+    <script src="auth/js/navigation-controller.js"></script>
+    <script src="auth/js/student-portal.js"></script>
+    <script>
+        // Check login and redirect if needed
+        document.addEventListener('DOMContentLoaded', () => {
+            // Basic authentication check - will redirect to login if not authenticated
+            NavigationController.checkAuth();
+        });
+    </script>
+
+    <!-- Sliding Panel Structure for script.js compatibility -->
+    <div id="panelOverlay" class="panel-overlay"></div>
+    <div id="slidingPanel" class="sliding-panel">
+        <div class="panel-header">
+            <h2 id="panelTitle"></h2>
+            <button id="panelClose" class="panel-close"><i class="fas fa-times"></i></button>
+        </div>
+        <div id="panelContent" class="panel-content"></div>
+    </div>
+</body>
+</html> 
