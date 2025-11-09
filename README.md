@@ -55,7 +55,7 @@ final DEV/
 
 ## Demo
 
-Check out the demo video done by my teammate: [University Management System Demo](https://youtu.be/2H2W2D3AVXs?si=JyMOiHd_DB3hT6jR)
+Check out the demo video by my teammate [@Joe-world1357](https://github.com/Joe-world1357): [University Management System Demo](https://youtu.be/2H2W2D3AVXs?si=JyMOiHd_DB3hT6jR)
 
 ## Author
 
