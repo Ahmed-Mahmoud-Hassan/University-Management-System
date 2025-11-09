@@ -1,0 +1,844 @@
+/* Root variables for the color palette */
+:root {
+  /* Primary Gradients */
+  --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  --gradient-success: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  --gradient-warning: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+  
+  /* Glass Effect Colors */
+  --glass-white: rgba(255, 255, 255, 0.25);
+  --glass-dark: rgba(0, 0, 0, 0.15);
+  --glass-border: rgba(255, 255, 255, 0.18);
+  
+  /* Shadows & Effects */
+  --shadow-soft: 0 8px 32px rgba(31, 38, 135, 0.37);
+  --shadow-hard: 0 15px 35px rgba(0, 0, 0, 0.2);
+  --glow-primary: 0 0 20px rgba(102, 126, 234, 0.4);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: var(--gradient-primary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.auth-container {
+    position: relative;
+    width: 1100px;
+    max-width: 100%;
+    height: 650px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 25px;
+    box-shadow: var(--shadow-soft);
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.auth-container:hover {
+    box-shadow: var(--shadow-hard), var(--glow-primary);
+    transform: translateY(-5px);
+}
+
+.form-container {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 50%;
+    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.student-login-container {
+    left: 0;
+    z-index: 2;
+    transform: translateX(0);
+    transition-delay: 0.1s;
+}
+
+.professor-login-container {
+    left: 0;
+    z-index: 1;
+    opacity: 0;
+    transform: translateX(-20px);
+}
+
+.auth-container.active .student-login-container {
+    transform: translateX(100%);
+    opacity: 0;
+    transition-delay: 0s;
+}
+
+.auth-container.active .professor-login-container {
+    transform: translateX(100%);
+    opacity: 1;
+    z-index: 5;
+    transition-delay: 0.1s;
+}
+
+/* Floating Label Effect */
+.input-group {
+    width: 100%;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.input-group i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #666;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    z-index: 2;
+}
+
+.input-group input:focus + i {
+    color: #3498db;
+}
+
+.professor-login-container .input-group input:focus + i {
+    color: #9b59b6;
+}
+
+input {
+    width: 100%;
+    padding: 15px 15px 15px 45px;
+    border: 2px solid #e0e0e0;
+    background: #f8f9fa;
+    border-radius: 10px;
+    outline: none;
+    transition: all 0.3s;
+    font-size: 16px;
+}
+
+input:focus {
+    border-color: #3498db;
+    background: white;
+    box-shadow: 0 0 10px rgba(52, 152, 219, 0.2);
+    transform: scale(1.02);
+}
+
+.professor-login-container input:focus {
+    border-color: #9b59b6;
+    box-shadow: 0 0 10px rgba(155, 89, 182, 0.2);
+}
+
+/* Ripple Effect for Buttons */
+button {
+    border-radius: 25px;
+    border: none;
+    background: linear-gradient(45deg, #3498db, #2980b9);
+    color: white;
+    padding: 15px 50px;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: all 0.3s;
+    width: 200px;
+    box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+button:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 0;
+    border-radius: 100%;
+    transform: scale(1, 1) translate(-50%);
+    transform-origin: 50% 50%;
+}
+
+button:focus:not(:active)::after {
+    animation: ripple 1s ease-out;
+}
+
+@keyframes ripple {
+    0% {
+        transform: scale(0, 0);
+        opacity: 0.5;
+    }
+    20% {
+        transform: scale(25, 25);
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 0;
+        transform: scale(40, 40);
+    }
+}
+
+.professor-login-container button {
+    background: linear-gradient(45deg, #9b59b6, #8e44ad);
+    box-shadow: 0 4px 15px rgba(155, 89, 182, 0.3);
+}
+
+button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
+}
+
+.professor-login-container button:hover {
+    box-shadow: 0 6px 20px rgba(155, 89, 182, 0.4);
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+.toggle-btn {
+    background: transparent;
+    border: 2px solid white;
+    color: white;
+    box-shadow: none;
+}
+
+.toggle-btn:hover {
+    background: white;
+    color: #333;
+    transform: translateY(-2px);
+}
+
+.forgot-password {
+    color: #3498db;
+    font-size: 14px;
+    text-decoration: none;
+    margin-top: 15px;
+    display: inline-block;
+    transition: all 0.3s;
+}
+
+.professor-login-container .forgot-password {
+    color: #9b59b6;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+    transform: translateY(-1px);
+}
+
+.divider {
+    margin: 25px 0;
+    font-size: 14px;
+    color: #777;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.divider::before, .divider::after {
+    content: "";
+    flex: 1;
+    border-bottom: 1px solid #ddd;
+    margin: 0 15px;
+}
+
+.quick-login {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.quick-btn, .admin-quick-btn {
+    padding: 8px 15px;
+    background: linear-gradient(45deg, #3498db, #2980b9);
+    border: 1px solid #99c3ed;
+    border-radius: 5px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.3s;
+    color: #333;
+}
+
+.quick-btn:hover, .admin-quick-btn:hover {
+    background: #ffffff;
+    color: rgb(0, 0, 0);
+    border-color: #3498db;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.professor-login-container .quick-btn:hover {
+    background: #ffffff;
+    border-color: #9b59b6;
+}
+
+/* Admin specific button styles */
+.admin-quick-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    min-width: 90px;
+}
+
+.admin-quick-btn i {
+    font-size: 0.9em;
+}
+
+/* Overlay Container with Glassmorphism */
+.overlay-container {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    transition: transform 0.6s ease-in-out;
+    z-index: 100;
+}
+
+.overlay {
+    background: var(--gradient-primary);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 0 0;
+    color: #ffffff;
+    position: relative;
+    left: -100%;
+    height: 100%;
+    width: 200%;
+    transform: translateX(0);
+    transition: transform 0.6s ease-in-out;
+}
+
+.auth-container.active .overlay-container {
+    transform: translateX(-100%);
+}
+
+.auth-container.active .overlay {
+    transform: translateX(50%);
+}
+
+.overlay-panel {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 40px;
+    text-align: center;
+    top: 0;
+    height: 100%;
+    width: 50%;
+    transform: translateX(0);
+    transition: transform 0.6s ease-in-out;
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(5px);
+}
+
+.overlay-left {
+    transform: translateX(-20%);
+}
+
+.overlay-right {
+    right: 0;
+    transform: translateX(0);
+}
+
+.overlay-register, .overlay-login {
+    right: 0;
+    transform: translateX(100%);
+    opacity: 0;
+}
+
+.auth-container.active .overlay-left {
+    transform: translateX(0);
+}
+
+.auth-container.active .overlay-right {
+    transform: translateX(20%);
+}
+
+.auth-container.register-mode .overlay-right {
+    transform: translateX(100%);
+    opacity: 0;
+}
+
+.auth-container.register-mode .overlay-left {
+    transform: translateX(-100%);
+    opacity: 0;
+}
+
+.auth-container.register-mode .overlay-register {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.auth-container.active.register-mode .overlay-login {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.overlay-panel h1 {
+    color: white;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    animation: none;
+}
+
+.overlay-panel p {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.5;
+    margin: 20px 0 30px;
+    color: white;
+}
+
+.overlay-icon {
+    font-size: 64px;
+    margin-bottom: 20px;
+    color: white;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+}
+
+/* the layout of the page */
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .auth-container {
+        width: 95%;
+        height: 600px;
+    }
+}
+
+@media (max-width: 768px) {
+    .auth-container {
+        width: 100%;
+        height: auto;
+        min-height: 650px;
+    }
+    .form-container {
+        width: 100%;
+        height: 100%;
+        padding: 30px;
+    }
+    .overlay-container {
+        display: none;
+    }
+}
+
+.admin-link {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 8px 15px;
+    border-radius: 20px;
+    transition: all 0.3s;
+}
+
+.admin-link:hover {
+    background: rgba(0, 0, 0, 0.4);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.role-badge {
+    background: linear-gradient(45deg, #3498db, #2980b9);
+    color: white;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+    box-shadow: 0 3px 10px rgba(52, 152, 219, 0.3);
+}
+
+.professor-login-container .role-badge {
+    background: linear-gradient(45deg, #9b59b6, #8e44ad);
+    box-shadow: 0 3px 10px rgba(155, 89, 182, 0.3);
+}
+
+/* Register Form Animation */
+.register-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 50%;
+    opacity: 0;
+    z-index: 1;
+    transform: translateX(100%);
+    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.auth-container.register-mode .register-container {
+    transform: translateX(0);
+    opacity: 1;
+    z-index: 5;
+}
+
+.auth-container.register-mode .student-login-container {
+    transform: translateX(-100%);
+    opacity: 0;
+}
+
+/* Progress Bar for Multi-step Registration */
+.progress-container {
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.progress-bar {
+    height: 5px;
+    background: #e0e0e0;
+    border-radius: 5px;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress {
+    height: 100%;
+    background: linear-gradient(45deg, #3498db, #2980b9);
+    width: 0;
+    transition: width 0.4s ease;
+}
+
+.step-indicators {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.step {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #e0e0e0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    color: #777;
+    transition: all 0.3s;
+}
+
+.step.active {
+    background: #3498db;
+    color: white;
+    box-shadow: 0 0 10px rgba(52, 152, 219, 0.5);
+}
+
+.step.completed {
+    background: #2ecc71;
+    color: white;
+}
+
+/* Register form styles */
+.register-step {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.btn-group {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.next-btn, .back-btn {
+    width: 45%;
+}
+
+.back-btn {
+    background: #e0e0e0;
+    color: #333;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.back-btn:hover {
+    background: #d0d0d0;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Select input styling */
+select {
+    width: 100%;
+    padding: 15px 15px 15px 45px;
+    border: 2px solid #e0e0e0;
+    background: #f8f9fa;
+    border-radius: 10px;
+    outline: none;
+    transition: all 0.3s;
+    font-size: 16px;
+    appearance: none;
+    cursor: pointer;
+}
+
+select:focus {
+    border-color: #3498db;
+    background: white;
+    box-shadow: 0 0 10px rgba(52, 152, 219, 0.2);
+    transform: scale(1.02);
+}
+
+.input-group select + i {
+    right: 15px;
+    left: auto;
+    pointer-events: none;
+}
+
+.input-group i.fa-university,
+.input-group i.fa-calendar {
+    left: 15px;
+    right: auto;
+}
+/* Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.7);
+  backdrop-filter: blur(5px);
+}
+
+.modal-content {
+  background: rgba(255, 255, 255, 0.95);
+  margin: 8% auto;
+  padding: 40px;
+  border-radius: 15px;
+  width: 480px;
+  max-width: 90%;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+  position: relative;
+  animation: modalFadeIn 0.3s;
+}
+
+.modal-content h2 {
+  font-size: 24px;
+  margin-bottom: 25px;
+  color: #2c3e50;
+}
+
+.modal-content .input-group {
+  margin-bottom: 25px;
+}
+
+.modal-content input {
+  font-size: 15px;
+}
+
+.modal-content button[type="submit"] {
+  width: 100%;
+  margin-top: 30px;
+  margin-bottom: 25px;
+}
+
+.modal-content .divider {
+  margin: 30px 0;
+}
+
+@keyframes modalFadeIn {
+  from { opacity: 0; transform: translateY(-50px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 24px;
+  cursor: pointer;
+  color: #666;
+}
+
+.close:hover {
+  color: #333;
+}
+
+/* Admin Dashboard Styles */
+.admin-dashboard {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  background: #f5f7fa;
+}
+
+.admin-header {
+  background: var(--gradient-primary);
+  color: white;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.admin-nav {
+  background: #2c3e50;
+  color: white;
+  width: 250px;
+  height: 100%;
+  position: fixed;
+  padding-top: 20px;
+}
+
+.admin-nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+.admin-nav li {
+  padding: 12px 20px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.admin-nav li:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+.admin-nav li.active {
+  background: rgba(255,255,255,0.2);
+}
+
+.admin-main {
+  margin-left: 250px;
+  padding: 30px;
+}
+
+.admin-card {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.admin-card h3 {
+  margin-top: 0;
+  color: #2c3e50;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.stat-card {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.stat-card h4 {
+  margin-top: 0;
+  color: #7f8c8d;
+}
+
+.stat-card .value {
+  font-size: 36px;
+  font-weight: bold;
+  color: var(--gradient-primary);
+  margin: 10px 0;
+}
+
+.user-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.user-table th, .user-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+.user-table th {
+  background: #f8f9fa;
+  color: #7f8c8d;
+}
+
+.user-table tr:hover {
+  background: #f8f9fa;
+}
+
+.action-btn {
+  padding: 6px 12px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  margin-right: 5px;
+  font-size: 12px;
+}
+
+.edit-btn {
+  background: #3498db;
+  color: white;
+}
+
+.delete-btn {
+  background: #e74c3c;
+  color: white;
+}
+
+/* Admin Quick Login Styles */
+.admin-quick-login {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.admin-quick-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    min-width: 90px;
+    font-size: 0.9em;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.admin-quick-btn i {
+    font-size: 0.9em;
+}
+
+.admin-quick-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
