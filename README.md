@@ -53,6 +53,10 @@ final DEV/
 └── University Management System - Detailed Functionality Specification.md
 ```
 
+## Demo
+
+Check out the demo video done by my teammate: [University Management System Demo](https://youtu.be/2H2W2D3AVXs?si=JyMOiHd_DB3hT6jR)
+
 ## Author
 
 - Ahmed Mahmoud Hassan
