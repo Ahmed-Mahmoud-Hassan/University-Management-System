@@ -58,6 +58,3 @@ final DEV/
 - Ahmed Mahmoud Hassan
 - LinkedIn: (https://www.linkedin.com/in/ahmed-mahmoud-0513a9369)
 - GitHub: [@Ahmed-Mahmoud-Hassan](https://github.com/Ahmed-Mahmoud-Hassan) 
-
-## License
-This project is licensed under the MIT License - see the LICENSE file for details. 
