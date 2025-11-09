@@ -53,8 +53,11 @@ final DEV/
 └── University Management System - Detailed Functionality Specification.md
 ```
 
-## Contributing
-Feel free to submit issues and enhancement requests!
+## Author
+
+- Ahmed Mahmoud Hassan
+- LinkedIn: (https://www.linkedin.com/in/ahmed-mahmoud-0513a9369)
+- GitHub: [@Ahmed-Mahmoud-Hassan](https://github.com/Ahmed-Mahmoud-Hassan) 
 
 ## License
 This project is licensed under the MIT License - see the LICENSE file for details. 
